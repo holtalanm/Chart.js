@@ -27,6 +27,7 @@ require('./elements/element.rectangle')(Chart);
 require('./scales/scale.linearbase.js')(Chart);
 require('./scales/scale.category')(Chart);
 require('./scales/scale.linear')(Chart);
+require('./scales/scale.exponential')(Chart);
 require('./scales/scale.logarithmic')(Chart);
 require('./scales/scale.radialLinear')(Chart);
 require('./scales/scale.time')(Chart);

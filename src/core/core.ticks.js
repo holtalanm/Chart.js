@@ -135,6 +135,47 @@ module.exports = function(Chart) {
 				ticks.push(lastTick);
 
 				return ticks;
+			},
+			/**
+			 * Generate a set of exponential ticks
+			 * @method Chart.Ticks.generators.exponential
+			 * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
+			 * @param dataRange {IRange} the range of the data
+			 * @returns {Array<Number>} array of tick values
+			 */
+			exponential: function(generationOptions, dataRange) {
+				var ticks = [];
+				// To get a "nice" value for the tick spacing, we will use the appropriately named
+				// "nice number" algorithm. See http://stackoverflow.com/questions/8506881/nice-label-algorithm-for-charts-with-minimum-ticks
+				// for details
+
+				var totalTicks = 0, niceMin = 2, niceMax = 10, niceExp = 2;
+
+				if(generationOptions.min && generationOptions.min >= niceMin) {
+					niceMin = generationOptions.min;
+				}
+				if(generationOptions.max && generationOptions.max >= niceMax) {
+					niceMax = generationOptions.max;
+				}
+				if(generationOptions.exponent && generationOptions.exponent >= 2) {
+					niceExp = generationOptions.exponent;
+				}
+
+				for(var i = 0; i <= niceMax; i = Math.pow(i, niceExp)) {
+					totalTicks++;
+				}
+
+				ticks.push(0)
+				ticks.push(niceMin);
+				for(var j = 1; j < totalTicks; j++) {
+					var lastTick = ticks[j];
+					ticks.push(Math.pow(lastTick, niceExp));
+				}
+				if(ticks[ticks.length - 1] < niceMax) {
+					ticks.push(niceMax);
+				}
+
+				return ticks;
 			}
 		},
 
