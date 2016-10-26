@@ -12521,11 +12521,11 @@ module.exports = function(Chart) {
 
 				var totalTicks = 0, niceMin = 2, niceMax = 10, niceExp = 2;
 
-				if(generationOptions.min && generationOptions.min >= niceMin) {
-					niceMin = generationOptions.min;
+				if(dataRange.min && dataRange.min >= niceMin) {
+					niceMin = dataRange.min;
 				}
-				if(generationOptions.max && generationOptions.max >= niceMax) {
-					niceMax = generationOptions.max;
+				if(dataRange.max && dataRange.max >= niceMax) {
+					niceMax = dataRange.max;
 				}
 				if(generationOptions.exponent && generationOptions.exponent >= 2) {
 					niceExp = generationOptions.exponent;
