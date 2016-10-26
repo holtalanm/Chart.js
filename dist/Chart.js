@@ -8298,9 +8298,13 @@ module.exports = function(Chart) {
 					niceExp = generationOptions.exponent;
 				}
 
-				for(var i = 0; i <= niceMax; i = Math.pow(i, niceExp)) {
+				for(var i = niceMin; i <= niceMax; i = Math.pow(i, niceExp)) {
 					totalTicks++;
 				}
+
+				console.log(totalTicks);
+				console.log(niceMin);
+				console.log(niceMax);
 
 				ticks.push(0)
 				ticks.push(niceMin);
@@ -8311,6 +8315,8 @@ module.exports = function(Chart) {
 				if(ticks[ticks.length - 1] < niceMax) {
 					ticks.push(niceMax);
 				}
+
+				console.log(ticks);
 
 				return ticks;
 			}
